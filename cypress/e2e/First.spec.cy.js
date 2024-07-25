@@ -5,8 +5,8 @@ describe('Login Test', () => {
     Login.successLogin();
   });
 
-  it('Should show an error message with invalid credentials', () => {
-    //TODO Login.failLogin()
+  it.only('Should show an error message with invalid credentials', () => {
+    Login.failLogin();
   });
 
   it('Should show validation messages when fields are empty', () => {

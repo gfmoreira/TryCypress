@@ -1,5 +1,5 @@
 const el = require('./elements').ELEMENTS;
-const { username, password, url } = require('../../fixtures/login.json');
+const { username, password, url, invalid } = require('../../fixtures/login.json');
 
 class Login {
   successLogin() {
@@ -20,11 +20,20 @@ class Login {
   }
 
   failLogin() {
-    //TODO Visit the login page
-    //TODO Fill in the email field with an invalid email
-    //TODO Fill in the password field with an invalid password
-    //TODO Click the login button
-    //TODO Check if an error message is displayed
+    // Visit the login page
+    cy.visit(url);
+
+    // Fill the username field with an invalid username
+    cy.get(el.username).type(invalid);
+
+    // Fill the password field with an invalid password
+    cy.get(el.password).type(invalid);
+
+    // Click the login button
+    cy.get('.oxd-button').click();
+
+    // Check if an error message is displayed
+    cy.contains('.oxd-text oxd-text--p oxd-alert-content-text').should('be.visible');
   }
 
   emptyFields() {
